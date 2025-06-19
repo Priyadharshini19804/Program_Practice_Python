@@ -7,20 +7,39 @@ phrase, or sequence that reads the same backward as forward.
 The longest palindrome is “racecar”. 
 '''
 
-mylist=[]
-size=int(input("Enter the number of elements in the list: "))
-for i in range(size):
-    string = input("Enter a string :")
-    mylist.append(string)
-#text=string.split()
-max_length=0
-for word in mylist:
-    if len(word)>max_length:
-        max_length = len(word)
-        #reverse = string[::-1]
-for word in mylist:
-    if len(word) == max_length:
-        reverse = word[::-1]
-        print(f"Longest Pallindrome: {word}")
-else:
-    print(f"There is no longest Pallindrome in the array.")
+print("Enter words separated by space:")
+input_line = input()
+words = []
+word = ""
+i = 0
+while i < len(input_line):
+    ch = input_line[i]
+    if ch != ' ':
+        word += ch
+    else:
+        if word != "":
+            words.append(word)
+            word = ""
+    i += 1
+if word != "":
+    words.append(word)
+longest_palindrome = ""
+max_length = 0
+i = 0
+while i < len(words):
+    word = words[i]
+    length = 0
+    for ch in word:
+        length += 1
+    j = 0
+    while j < length // 2:
+        if word[j] != word[length - j - 1]:
+            break
+        j += 1
+    if j == length // 2:
+        if length > max_length:
+            max_length = length
+            longest_palindrome = word
+
+    i += 1
+print("The longest palindrome is:", longest_palindrome)
